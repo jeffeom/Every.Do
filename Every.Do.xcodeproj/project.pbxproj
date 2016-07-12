@@ -63,6 +63,8 @@
 		4099C67C1D357815005033D2 /* todoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = todoCell.m; sourceTree = "<group>"; };
 		4099C67E1D35866E005033D2 /* EditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditViewController.h; sourceTree = "<group>"; };
 		4099C67F1D35866E005033D2 /* EditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditViewController.m; sourceTree = "<group>"; };
+		4099C6811D35983E005033D2 /* DetailViewControllerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewControllerDelegate.h; sourceTree = "<group>"; };
+		4099C6821D35A867005033D2 /* todoCellDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = todoCellDelegate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,13 +121,15 @@
 				4099C6491D356D03005033D2 /* MasterViewController.m */,
 				4099C64B1D356D03005033D2 /* DetailViewController.h */,
 				4099C64C1D356D03005033D2 /* DetailViewController.m */,
+				4099C67E1D35866E005033D2 /* EditViewController.h */,
+				4099C67F1D35866E005033D2 /* EditViewController.m */,
 				4099C6781D3572BA005033D2 /* Todos.h */,
 				4099C6791D3572BA005033D2 /* Todos.m */,
 				4099C67B1D357815005033D2 /* todoCell.h */,
 				4099C67C1D357815005033D2 /* todoCell.m */,
-				4099C67E1D35866E005033D2 /* EditViewController.h */,
-				4099C67F1D35866E005033D2 /* EditViewController.m */,
 				4099C64E1D356D03005033D2 /* Main.storyboard */,
+				4099C6811D35983E005033D2 /* DetailViewControllerDelegate.h */,
+				4099C6821D35A867005033D2 /* todoCellDelegate.h */,
 				4099C6511D356D03005033D2 /* Assets.xcassets */,
 				4099C6531D356D03005033D2 /* LaunchScreen.storyboard */,
 				4099C6561D356D03005033D2 /* Info.plist */,

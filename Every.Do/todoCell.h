@@ -7,10 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "todoCellDelegate.h"
+
 
 @interface todoCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UITextView *bodyText;
 @property (weak, nonatomic) IBOutlet UILabel *priorityNumber;
+
+@property (nonatomic, weak) id<todoCellDelegate> delegate;
+
+@property (nonatomic) UISwipeGestureRecognizer *gr;
 
 @end

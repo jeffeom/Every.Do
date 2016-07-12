@@ -7,7 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DetailViewControllerDelegate.h"
 
 @interface EditViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UITextField *editTitle;
+@property (weak, nonatomic) IBOutlet UITextField *editNumber;
+@property (weak, nonatomic) IBOutlet UITextView *editBody;
+- (IBAction)saveButton:(id)sender;
+
+@property NSString *madeTitle;
+@property NSString *madeBody;
+@property int newInteger;
+@property BOOL isCompleted;
+
+@property (nonatomic, weak) id<DetailViewControllerDelegate> delegate;
 
 @end

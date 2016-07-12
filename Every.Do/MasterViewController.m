@@ -11,15 +11,33 @@
 #import "EditViewController.h"
 #import "Todos.h"
 #import "todoCell.h"
+#import "DetailViewControllerDelegate.h"
+#import "todoCellDelegate.h"
 
-@interface MasterViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface MasterViewController () <UITableViewDelegate, UITableViewDataSource, DetailViewControllerDelegate, todoCellDelegate>
 
 @property NSMutableArray *objects;
 @property NSMutableArray *todoList;
+@property EditViewController *editVC;
+
+@property Todos *myTodos;
 
 @end
 
 @implementation MasterViewController
+
+- (void)editViewControllerDidTouchSave:(Todos *)todo {
+    [self.todoList addObject:todo];
+    [self.tableView reloadData];
+}
+
+-(void)swipedCell:(todoCell *)cell{
+    NSIndexPath *ip = [self.tableView indexPathForCell:cell];
+    
+    Todos *swipedTodo = self.todoList[ip.row];
+    swipedTodo.isCompleted = YES;
+    [self.tableView reloadData];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -30,6 +48,8 @@
     self.navigationItem.leftBarButtonItem = self.editButtonItem;
 
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
+    
+    
     self.navigationItem.rightBarButtonItem = addButton;
     
     Todos *todo1 = [[Todos alloc] initWithTitle:@"Eat" Body:@"Eat Breakfast" PriorityNumber:1 andIsCompleted:NO];
@@ -53,14 +73,15 @@
 }
 
 - (void)insertNewObject:(id)sender {
+    
     if (!self.todoList) {
         self.todoList = [[NSMutableArray alloc] init];
     }
     
-    Todos *newTodo = [[Todos alloc] initWithTitle:@"New" Body:@"New" PriorityNumber:1 andIsCompleted:NO];
-    [self.todoList insertObject: newTodo atIndex:0];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    EditViewController *addingPage = [[EditViewController alloc] init];
+    addingPage = [self.storyboard instantiateViewControllerWithIdentifier:@"newView"];
+    addingPage.delegate = self;
+    [self.navigationController pushViewController:addingPage animated:YES];
 }
 
 #pragma mark - Segues
@@ -87,6 +108,8 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     todoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     
+    cell.delegate = self;
+    
     Todos *todo = self.todoList[indexPath.row];
     
     cell.titleLabel.text = todo.title;
@@ -98,7 +121,7 @@
         NSMutableAttributedString *cutStringBody = [[NSMutableAttributedString alloc] initWithString:todo.body];
         [cutStringBody addAttribute:NSStrikethroughStyleAttributeName value:[NSNumber numberWithInteger:NSUnderlineStyleSingle] range:NSMakeRange(0, [cutStringBody length])];
         
-        NSMutableAttributedString *cutStringTitle = [[NSMutableAttributedString alloc] initWithString:todo.body];
+        NSMutableAttributedString *cutStringTitle = [[NSMutableAttributedString alloc] initWithString:todo.title];
         [cutStringTitle addAttribute:NSStrikethroughStyleAttributeName value:[NSNumber numberWithInteger:NSUnderlineStyleSingle] range:NSMakeRange(0, [cutStringTitle length])];
         
         [cell.titleLabel setAttributedText:cutStringTitle];
@@ -115,7 +138,7 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [self.objects removeObjectAtIndex:indexPath.row];
+        [self.todoList removeObjectAtIndex:indexPath.row];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.

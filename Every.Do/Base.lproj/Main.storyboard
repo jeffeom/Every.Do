@@ -90,7 +90,7 @@
         <!--Edit View Controller-->
         <scene sceneID="P05-vB-d0Q">
             <objects>
-                <viewController id="00p-GV-09r" customClass="EditViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="newView" useStoryboardIdentifierAsRestorationIdentifier="YES" id="00p-GV-09r" customClass="EditViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="igQ-Kw-085"/>
                         <viewControllerLayoutGuide type="bottom" id="h2F-uP-NJX"/>
@@ -152,9 +152,12 @@
                                     <constraint firstAttribute="width" constant="46" id="s9w-fT-h6D"/>
                                 </constraints>
                                 <state key="normal" title="Save"/>
+                                <connections>
+                                    <action selector="saveButton:" destination="00p-GV-09r" eventType="touchUpInside" id="taO-he-Wkl"/>
+                                </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="interactive" text="Tap on this Text..." translatesAutoresizingMaskIntoConstraints="NO" id="I0i-La-WC1">
-                                <rect key="frame" x="108" y="268" width="196" height="123"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="interactive" text="Edit this Text..." translatesAutoresizingMaskIntoConstraints="NO" id="I0i-La-WC1">
+                                <rect key="frame" x="108" y="273" width="196" height="118"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
@@ -176,7 +179,7 @@
                             <constraint firstItem="54r-Wx-VFW" firstAttribute="centerX" secondItem="fgF-Zd-1i2" secondAttribute="centerX" id="esN-Ku-ahg"/>
                             <constraint firstItem="AK5-NP-HTD" firstAttribute="leading" secondItem="SMc-hV-udb" secondAttribute="trailing" constant="8" id="hx3-aB-maX"/>
                             <constraint firstItem="eW6-nh-RXk" firstAttribute="top" secondItem="igQ-Kw-085" secondAttribute="bottom" id="j0T-jj-Wag"/>
-                            <constraint firstItem="I0i-La-WC1" firstAttribute="top" secondItem="AK5-NP-HTD" secondAttribute="bottom" constant="22" id="kX2-0X-kcS"/>
+                            <constraint firstItem="I0i-La-WC1" firstAttribute="top" secondItem="AK5-NP-HTD" secondAttribute="bottom" constant="27" id="kX2-0X-kcS"/>
                             <constraint firstItem="EDt-hv-yW6" firstAttribute="leading" secondItem="oOC-rh-Xen" secondAttribute="trailing" constant="50" id="oHE-2D-f2a"/>
                             <constraint firstAttribute="leadingMargin" secondItem="SMc-hV-udb" secondAttribute="leading" id="pLD-NW-uKq"/>
                             <constraint firstAttribute="trailingMargin" secondItem="EDt-hv-yW6" secondAttribute="trailing" id="vFS-Sa-DPm"/>
@@ -184,6 +187,11 @@
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="editBody" destination="I0i-La-WC1" id="4nh-sN-Qcn"/>
+                        <outlet property="editNumber" destination="AK5-NP-HTD" id="UqL-hj-t4U"/>
+                        <outlet property="editTitle" destination="EDt-hv-yW6" id="N9b-KV-yOx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OGw-dd-syM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -227,6 +235,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <gestureRecognizers/>
                                     <constraints>
                                         <constraint firstItem="30V-2w-SJR" firstAttribute="trailing" secondItem="37f-cq-3Eg" secondAttribute="trailingMargin" id="0tM-Md-5aC"/>
                                         <constraint firstItem="QQo-23-qda" firstAttribute="bottom" secondItem="37f-cq-3Eg" secondAttribute="bottomMargin" id="DFw-x2-IDi"/>
@@ -238,6 +247,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
                                 <connections>
                                     <outlet property="bodyText" destination="QQo-23-qda" id="wYi-qm-3N2"/>
                                     <outlet property="priorityNumber" destination="30V-2w-SJR" id="4BX-PJ-8eN"/>
